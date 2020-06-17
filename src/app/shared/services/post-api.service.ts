@@ -28,14 +28,14 @@ export class PostApiService {
   }
 
   deletePost(post: IPost): Observable<IPost> {
-    return this.http.delete<IPost>(`${API}/heroes/${post.id}`)
+    return this.http.delete<IPost>(`${API}/posts/${post.id}`)
       .pipe(
-        tap(() => this.toastService.openSnackBar(`Post '${post.id}' deleted`, 'DELETE POST'))
+        tap(() => this.toastService.openSnackBar(`Post '${post.title}' deleted`, 'DELETE POST'))
       );
   }
 
   updatePost(post: IPost): Observable<IPost> {
-    return this.http.put<IPost>(`${API}/heroes/${post.id}`, post)
+    return this.http.put<IPost>(`${API}/posts/${post.id}`, post)
       .pipe(
         tap(() => this.toastService.openSnackBar(`Post '${post.title}' deleted`, 'DELETE POST'))
       );
