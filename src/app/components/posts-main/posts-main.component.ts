@@ -4,6 +4,7 @@ import { IPost } from 'src/app/shared/interfaces/post.interface';
 import { ToasterService } from 'src/app/shared/services/toaster.service';
 import { MatDialog } from '@angular/material';
 import { PopupComponent } from 'src/app/shared/components/popup/popup.component';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-posts-main',
@@ -16,10 +17,12 @@ export class PostsMainComponent implements OnInit {
   constructor(
     private postApi: PostApiService,
     private toastService: ToasterService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
+    this.sharedService.currentPost.subscribe(posts => this.posts = posts);
     this.getPosts();
   }
 
@@ -30,10 +33,16 @@ export class PostsMainComponent implements OnInit {
     );
   }
 
+  addPost() {
+    this.sharedService.currentPost.subscribe(posts => {
+      this.posts = posts;
+    });
+  }
+
   openDialog() {
     this.dialog.open(PopupComponent, {
       data: {
-        post: this.posts[this.posts.length - 1]
+        posts: this.posts
       }
     });
   }

@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { IPost } from '../../interfaces/post.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-popup',
@@ -10,23 +11,24 @@ import { IDialogData } from '../../interfaces/dialog.interface';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-  public localPost: IPost;
   public form: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IDialogData,
-    public dialogRef: MatDialogRef<PopupComponent>
+    public dialogRef: MatDialogRef<PopupComponent>,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit() {
-    const { post } = this.data;
-    const id = post.id + 1;
-
-    this.initForm(id);
+    this.initForm();
   }
 
-  addHero() {
-    this.localPost = this.form.value;
+  addPost() {
+    const { posts } = this.data;
+    const localPost = this.form.value;
+    const newPost = [...posts, localPost];
+
+    this.sharedService.sendPost(newPost);
 
     this.dialogRef.close();
   }
@@ -35,7 +37,10 @@ export class PopupComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  initForm(id: number): void {
+  initForm(): void {
+    const { posts } = this.data;
+    const id = posts[posts.length - 1].id + 1;
+
     this.form = new FormGroup({
       id: new FormControl(id, Validators.required),
       title: new FormControl('', Validators.required),
