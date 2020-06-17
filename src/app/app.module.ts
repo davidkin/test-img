@@ -9,13 +9,15 @@ import { CoreModule } from './core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { PostsMainComponent } from './components/posts-main/posts-main.component';
 import { PostListComponent } from './components/post-list/post-list.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     PostsMainComponent,
-    PostListComponent
+    PostListComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
