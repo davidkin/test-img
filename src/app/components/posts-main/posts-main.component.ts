@@ -13,6 +13,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class PostsMainComponent implements OnInit {
   public posts: IPost[];
+  // public selectedPost: IPost;
 
   constructor(
     private postApi: PostApiService,
@@ -21,25 +22,29 @@ export class PostsMainComponent implements OnInit {
     private sharedService: SharedService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sharedService.currentPost.subscribe(posts => this.posts = posts);
     this.getPosts();
   }
 
-  getPosts() {
+  getPosts(): void {
     this.postApi.getPosts().subscribe(
       (data: IPost[] ) => (this.posts = data),
       err => this.toastService.openSnackBar(`The ${err}`, 'ERROR')
     );
   }
 
-  addPost() {
+  addPost(): void {
     this.sharedService.currentPost.subscribe(posts => {
       this.posts = posts;
     });
   }
 
-  openDialog() {
+  // onSelectedPost(post: IPost) {
+  //   this.selectedPost = post;
+  // }
+
+  openDialog(): void {
     this.dialog.open(PopupComponent, {
       data: {
         posts: this.posts
