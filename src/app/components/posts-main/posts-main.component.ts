@@ -13,7 +13,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class PostsMainComponent implements OnInit {
   public posts: IPost[];
-  // public selectedPost: IPost;
+  public selectedPost: IPost;
 
   constructor(
     private postApi: PostApiService,
@@ -23,7 +23,7 @@ export class PostsMainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sharedService.currentPost.subscribe(posts => this.posts = posts);
+    this.sharedService.currentPosts.subscribe(posts => this.posts = posts);
     this.getPosts();
   }
 
@@ -34,16 +34,6 @@ export class PostsMainComponent implements OnInit {
     );
   }
 
-  addPost(): void {
-    this.sharedService.currentPost.subscribe(posts => {
-      this.posts = posts;
-    });
-  }
-
-  // onSelectedPost(post: IPost) {
-  //   this.selectedPost = post;
-  // }
-
   openDialog(): void {
     this.dialog.open(PopupComponent, {
       data: {
@@ -51,5 +41,4 @@ export class PostsMainComponent implements OnInit {
       }
     });
   }
-
 }
