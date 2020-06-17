@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
 import { SharedService } from '../../services/shared.service';
+import { PostApiService } from '../../services/post-api.service';
 
 @Component({
   selector: 'app-popup',
@@ -16,7 +17,8 @@ export class PopupComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IDialogData,
     public dialogRef: MatDialogRef<PopupComponent>,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private postApi: PostApiService
   ) {}
 
   ngOnInit() {
@@ -25,12 +27,16 @@ export class PopupComponent implements OnInit {
 
   addPost() {
     const { posts } = this.data;
-    const localPost = this.form.value;
-    const newPost = [...posts, localPost];
+    const localPost: IPost = this.form.value;
 
-    this.sharedService.sendPost(newPost);
+    this.postApi.addPost(localPost).subscribe(
+      (data: IPost) => {
+        const newPosts: IPost[] = [...posts, data];
+        this.sharedService.sendPost(newPosts);
+      }
+    );
 
-    this.dialogRef.close();
+    this.closeDialog();
   }
 
   closeDialog() {

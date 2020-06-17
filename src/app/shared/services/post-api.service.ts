@@ -20,8 +20,8 @@ export class PostApiService {
     return this.http.get<IPost[]>(`${API}/posts`);
   }
 
-  addPost(post: IPost) {
-    return this.http.post(`${API}/posts/`, post)
+  addPost(post: IPost): Observable<IPost> {
+    return this.http.post<IPost>(`${API}/posts/`, post)
       .pipe(
         tap(() => this.toastService.openSnackBar(`Post '${post.title}' added`, 'ADD NEW POST'))
       );
