@@ -1,7 +1,11 @@
 <div class="post-list">
 
     <div class="card-block" *ngFor="let post of posts">
-        <app-post [post]="post"></app-post>
+        <app-post 
+            [post]="post" 
+            [activePost]="selectedPost"
+            (click)="selectPost(post)"
+        ></app-post>
     </div>
 
 </div>
