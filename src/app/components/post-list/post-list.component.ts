@@ -14,7 +14,7 @@ export class PostListComponent {
   constructor() { }
 
   selectPost(post: IPost): void {
-    // this.selected.emit(post);
+    this.selectedPost = post;
   }
 
 }
