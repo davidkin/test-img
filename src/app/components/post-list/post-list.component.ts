@@ -8,15 +8,13 @@ import { IPost } from 'src/app/shared/interfaces/post.interface';
 })
 export class PostListComponent {
   @Input() posts: IPost[];
-  @Input() selectedPost: IPost;
 
-  @Output() selected = new EventEmitter<IPost>();
+  public selectedPost: IPost;
 
   constructor() { }
 
   selectPost(post: IPost): void {
     // this.selected.emit(post);
-    this.selectedPost = post;
   }
 
 }
