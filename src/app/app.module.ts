@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { PostsMainComponent } from './components/posts-main/posts-main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    PostsMainComponent
   ],
   imports: [
     BrowserModule,
