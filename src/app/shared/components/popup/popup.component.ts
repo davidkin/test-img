@@ -13,6 +13,7 @@ import { PostApiService } from '../../services/post-api.service';
 })
 export class PopupComponent implements OnInit {
   public form: FormGroup;
+  public status: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IDialogData,
@@ -22,6 +23,9 @@ export class PopupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const { status } = this.data;
+    this.status = status;
+
     this.initForm();
   }
 
@@ -37,6 +41,10 @@ export class PopupComponent implements OnInit {
     );
 
     this.closeDialog();
+  }
+
+  updatePost() {
+
   }
 
   closeDialog() {

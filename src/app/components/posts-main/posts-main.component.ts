@@ -37,7 +37,8 @@ export class PostsMainComponent implements OnInit {
   openDialog(): void {
     this.dialog.open(PopupComponent, {
       data: {
-        posts: this.posts
+        posts: this.posts,
+        status: 'add'
       }
     });
   }
