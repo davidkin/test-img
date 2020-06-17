@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostApiService } from 'src/app/shared/services/post-api.service';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
 import { ToasterService } from 'src/app/shared/services/toaster.service';
+import { MatDialog } from '@angular/material';
+import { PopupComponent } from 'src/app/shared/components/popup/popup.component';
 
 @Component({
   selector: 'app-posts-main',
@@ -13,7 +15,8 @@ export class PostsMainComponent implements OnInit {
 
   constructor(
     private postApi: PostApiService,
-    private toastService: ToasterService
+    private toastService: ToasterService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -25,6 +28,14 @@ export class PostsMainComponent implements OnInit {
       (data: IPost[] ) => (this.posts = data),
       err => this.toastService.openSnackBar(`The ${err}`, 'ERROR')
     );
+  }
+
+  openDialog() {
+    this.dialog.open(PopupComponent, {
+      data: {
+        post: this.posts[this.posts.length - 1]
+      }
+    });
   }
 
 }
