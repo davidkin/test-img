@@ -1,0 +1,55 @@
+<div class="dialog-header">
+    <h1 mat-dialog-title>Add Post</h1>
+
+    <button class="close-button" mat-icon-button color="warn" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-content class="popup-content">
+
+    <form [formGroup]="form">
+        <div>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    name="id" 
+                    placeholder="id" 
+                    readonly 
+                    formControlName="id"
+                />
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    name="title" 
+                    placeholder="title" 
+                    formControlName="title"
+                />
+            </mat-form-field>
+        </div>
+        
+        <div>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    name="img" 
+                    placeholder="image link" 
+                    formControlName="img"
+                />
+            </mat-form-field>
+        </div>
+
+        <button 
+            type="button" 
+            mat-raised-button 
+            color="primary" 
+            class="button" 
+            (click)="addHero()"
+            [disabled]="form.invalid"
+        >Save</button>
+    </form>
+</div>
