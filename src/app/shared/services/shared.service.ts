@@ -6,7 +6,7 @@ import { IPost } from '../interfaces/post.interface';
   providedIn: 'root'
 })
 export class SharedService {
-  public post = new BehaviorSubject<any>([]);
+  private post = new BehaviorSubject<any>([]);
   public currentPosts = this.post.asObservable();
 
   constructor() { }
