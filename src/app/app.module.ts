@@ -8,12 +8,14 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { PostsMainComponent } from './components/posts-main/posts-main.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    PostsMainComponent
+    PostsMainComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
