@@ -32,7 +32,7 @@ export class PopupComponent implements OnInit {
     this.postApi.addPost(localPost).subscribe(
       (data: IPost) => {
         const newPosts: IPost[] = [...posts, data];
-        this.sharedService.sendPost(newPosts);
+        this.sharedService.sendPosts(newPosts);
       }
     );
 
