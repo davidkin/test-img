@@ -14,6 +14,7 @@ import { PostApiService } from '../../services/post-api.service';
 export class PopupComponent implements OnInit {
   public form: FormGroup;
   public status: string;
+  public statusCheck: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IDialogData,
@@ -24,7 +25,9 @@ export class PopupComponent implements OnInit {
 
   ngOnInit() {
     const { status } = this.data;
+
     this.status = status;
+    this.statusCheck = status === 'edit';
 
     this.initForm();
   }
@@ -47,18 +50,30 @@ export class PopupComponent implements OnInit {
 
   }
 
+  submit() {
+    if (this.statusCheck) {
+      this.updatePost();
+      return;
+    }
+
+    this.addPost();
+  }
+
   closeDialog() {
     this.dialogRef.close();
   }
 
   initForm(): void {
-    const { posts } = this.data;
-    const id = posts[posts.length - 1].id + 1;
+    const { posts, post } = this.data;
+
+    const id = this.statusCheck ? post.id : (posts[posts.length - 1].id + 1);
+    const title = this.statusCheck ? post.title : '';
+    const img = this.statusCheck ? post.img : '';
 
     this.form = new FormGroup({
       id: new FormControl(id, Validators.required),
-      title: new FormControl('', Validators.required),
-      img: new FormControl('', Validators.required)
+      title: new FormControl(title, Validators.required),
+      img: new FormControl(img, Validators.required)
     });
   }
 

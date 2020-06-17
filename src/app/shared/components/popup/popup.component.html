@@ -8,10 +8,10 @@
 
 <div mat-dialog-content class="popup-content">
 
-    <form [formGroup]="form">
-        <div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="invisible">
             <mat-form-field>
-                <input 
+                <input
                     matInput 
                     name="id" 
                     placeholder="id" 
@@ -43,8 +43,7 @@
             </mat-form-field>
         </div>
 
-        <button 
-            type="button" 
+        <button
             mat-raised-button 
             color="primary" 
             class="button" 
