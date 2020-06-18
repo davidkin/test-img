@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" [class.reverse]="isReverse">
     <mat-card-header class="card-header">
         <mat-card-title class="card-title" [style.color]="color">{{ post.title }}</mat-card-title>
 
@@ -15,6 +15,9 @@
     
     </mat-card-header>
 
-    <img class="card-img" mat-card-image [src]="post.img" alt="Photo">
-    <button mat-fab [(colorPicker)]="color" color="accent" class='color-button'><mat-icon>brush</mat-icon></button>
+    <div class="img-block">
+        <img class="card-img" mat-card-image [src]="post.img" alt="Photo">
+        <button mat-fab [(colorPicker)]="color" color="accent" class='color-button'><mat-icon>brush</mat-icon></button>
+        <button mat-fab color="warn" class='position-button' (click)="isReverse = !isReverse"><mat-icon>swap_horiz</mat-icon></button>
+    </div>
 </mat-card>

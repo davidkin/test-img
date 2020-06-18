@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
   @Input() post: IPost;
   @Input() activePost: IPost;
 
-  public hex: string;
+  public isReverse: boolean;
 
   constructor(
     private postApi: PostApiService,
