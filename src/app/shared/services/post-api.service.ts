@@ -11,6 +11,10 @@ import { tap } from 'rxjs/internal/operators/tap';
 })
 export class PostApiService {
 
+  public headers = {
+    'Content-Type': 'application/json'
+  };
+
   constructor(
     private http: HttpClient,
     private toastService: ToasterService
@@ -21,7 +25,7 @@ export class PostApiService {
   }
 
   addPost(post: IPost): Observable<IPost> {
-    return this.http.post<IPost>(`${API}/posts/`, post)
+    return this.http.post<IPost>(`${API}/posts/`, post, { headers: this.headers })
       .pipe(
         tap(() => this.toastService.openSnackBar(`Post '${post.title}' added`, 'ADD NEW POST'))
       );
@@ -35,9 +39,9 @@ export class PostApiService {
   }
 
   updatePost(post: IPost): Observable<IPost> {
-    return this.http.put<IPost>(`${API}/posts/${post.id}`, post)
+    return this.http.patch<IPost>(`${API}/posts/${post.id}`, post, { headers: this.headers })
       .pipe(
-        tap(() => this.toastService.openSnackBar(`Post '${post.title}' deleted`, 'DELETE POST'))
+        tap(() => this.toastService.openSnackBar(`Post '${post.title}' update`, 'UPDATE POST'))
       );
   }
 
