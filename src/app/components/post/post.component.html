@@ -4,7 +4,7 @@
 
     <div class="btn-block" [class.selected]="post === activePost">
 
-        <button class="button" mat-icon-button>
+        <button class="button" mat-icon-button (click)="onEditPost(post)">
             <mat-icon color="primary">edit</mat-icon>
         </button>
 

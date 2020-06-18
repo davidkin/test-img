@@ -1,7 +1,19 @@
 {
   "posts": [
-    { "id": 1, "title": "Card 1", "img": "https://undark.org/wp-content/uploads/2020/02/GettyImages-1199242002-1-scaled.jpg" },
-    { "id": 2, "title": "Card 2", "img": "https://ewscripps.brightspotcdn.com/dims4/default/61a5be9/2147483647/strip/true/crop/640x360+0+34/resize/1280x720!/quality/90/?url=https%3A%2F%2Fmediaassets.wkbw.com%2Fphoto%2F2017%2F10%2F17%2FCAT%20PIC_1508223570861_68991041_ver1.0_640_480.jpeg" },
-    { "id": 3, "title": "Card 3", "img": "https://www.rochesterfirst.com/wp-content/uploads/sites/66/2019/09/cat.jpg" }
+    {
+      "id": 1,
+      "title": "Card 1",
+      "img": "https://undark.org/wp-content/uploads/2020/02/GettyImages-1199242002-1-scaled.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Card 2",
+      "img": "https://ewscripps.brightspotcdn.com/dims4/default/61a5be9/2147483647/strip/true/crop/640x360+0+34/resize/1280x720!/quality/90/?url=https%3A%2F%2Fmediaassets.wkbw.com%2Fphoto%2F2017%2F10%2F17%2FCAT%20PIC_1508223570861_68991041_ver1.0_640_480.jpeg"
+    },
+    {
+      "id": 3,
+      "title": "Card 3",
+      "img": "https://www.rochesterfirst.com/wp-content/uploads/sites/66/2019/09/cat.jpg"
+    }
   ]
 }

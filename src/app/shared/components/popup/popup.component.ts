@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
 import { SharedService } from '../../services/shared.service';
 import { PostApiService } from '../../services/post-api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popup',
@@ -32,7 +33,7 @@ export class PopupComponent implements OnInit {
     this.initForm();
   }
 
-  addPost() {
+  addPost(): void {
     const { posts } = this.data;
     const localPost: IPost = this.form.value;
 
@@ -46,11 +47,23 @@ export class PopupComponent implements OnInit {
     this.closeDialog();
   }
 
-  updatePost() {
+  updatePost(): void {
+    const { posts } = this.data;
+    const localPost: IPost = this.form.value;
 
+    this.postApi.updatePost(localPost).subscribe(
+      (data: IPost) => {
+        const updatePostIdx = posts.findIndex(el => el.id === localPost.id);
+        posts[updatePostIdx] = data;
+
+        this.sharedService.sendPosts(posts);
+      }
+    );
+
+    this.closeDialog();
   }
 
-  submit() {
+  submit(): void {
     if (this.statusCheck) {
       this.updatePost();
       return;
@@ -59,7 +72,7 @@ export class PopupComponent implements OnInit {
     this.addPost();
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
