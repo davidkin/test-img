@@ -1,20 +1,20 @@
 <mat-card class="card">
     <mat-card-header class="card-header">
-    <mat-card-title class="card-title">{{ post.title }}</mat-card-title>
+        <mat-card-title class="card-title" [style.color]="color">{{ post.title }}</mat-card-title>
 
-    <div class="btn-block" [class.selected]="post === activePost">
-
-        <button class="button" mat-icon-button (click)="onEditPost(post)">
-            <mat-icon color="primary">edit</mat-icon>
-        </button>
-
-        <button class="button" mat-icon-button (click)="onDeletePost(post)">
-            <mat-icon color="accent">delete</mat-icon>
-        </button>
-
-    </div>
-
-    </mat-card-header>
+        <div class="btn-block" [class.selected]="post === activePost">
+            <button class="button" mat-icon-button (click)="onEditPost(post)">
+                <mat-icon color="primary">edit</mat-icon>
+            </button>
+            
+            <button class="button" mat-icon-button (click)="onDeletePost(post)">
+                <mat-icon color="accent">delete</mat-icon>
+            </button>
+            
+        </div>
     
+    </mat-card-header>
+
     <img class="card-img" mat-card-image [src]="post.img" alt="Photo">
+    <button mat-fab [(colorPicker)]="color" color="accent" class='color-button'><mat-icon>brush</mat-icon></button>
 </mat-card>

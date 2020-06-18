@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ColorPickerModule
   ],
   exports: [
     MatToolbarModule,
@@ -29,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ColorPickerModule
   ]
 })
 export class CoreModule { }

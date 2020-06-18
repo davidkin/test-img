@@ -15,6 +15,8 @@ export class PostComponent implements OnInit {
   @Input() post: IPost;
   @Input() activePost: IPost;
 
+  public hex: string;
+
   constructor(
     private postApi: PostApiService,
     private sharedService: SharedService,
