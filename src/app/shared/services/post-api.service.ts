@@ -21,7 +21,7 @@ export class PostApiService {
     private toastService: ToasterService
   ) { }
 
-  getPosts(): Observable<IPost[]> {
+  getAllPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(`${this.API}/posts`);
   }
 

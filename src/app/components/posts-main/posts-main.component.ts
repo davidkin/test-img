@@ -23,12 +23,12 @@ export class PostsMainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sharedService.currentPosts.subscribe(posts => this.posts = posts);
+    // this.sharedService.currentPosts.subscribe(posts => this.posts = posts);
     this.getPosts();
   }
 
   getPosts(): void {
-    this.postApi.getPosts().subscribe(
+    this.postApi.getAllPosts().subscribe(
       (data: IPost[] ) => (this.posts = data),
       err => this.toastService.openSnackBar(`The ${err}`, 'ERROR')
     );
