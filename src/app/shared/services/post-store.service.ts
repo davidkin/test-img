@@ -35,7 +35,35 @@ export class PostStoreService {
   addPost(newPost: IPost): Observable<IPost> {
     const postAddReq$ = this.postApi.addPost(newPost);
 
+    postAddReq$.subscribe(
+      () => {
+        const posts: IPost[] = this._posts.getValue();
+        const newPosts: IPost[] = [...posts, newPost];
+
+        this._posts.next(newPosts);
+      },
+      err => this.toast.openSnackBar(`Error add Post: ${err}`, 'ADD POST ERROR')
+    );
+
     return postAddReq$;
+  }
+
+  updatePost(updatedPost: IPost): Observable<IPost> {
+    const postUpdateReq$ = this.postApi.updatePost(updatedPost);
+
+    postUpdateReq$.subscribe(
+      () => {
+        const posts: IPost[] = this._posts.getValue();
+        const updatePostIdx = posts.findIndex(el => el.id === updatedPost.id);
+
+        posts[updatePostIdx] = new Post({ id: updatedPost.id, title: updatedPost.title, img: updatedPost.img });
+
+        this._posts.next(posts);
+      },
+      err => this.toast.openSnackBar(`Error update Post: ${err}`, 'UPDATED POST ERROR')
+    );
+
+    return postUpdateReq$;
   }
 
   deletePost(deletedPost: IPost): Observable<IPost> {

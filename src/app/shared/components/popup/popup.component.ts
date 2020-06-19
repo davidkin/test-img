@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
 import { SharedService } from '../../services/shared.service';
 import { PostApiService } from '../../services/post-api.service';
+import { PostStoreService } from '../../services/post-store.service';
 
 @Component({
   selector: 'app-popup',
@@ -19,8 +20,7 @@ export class PopupComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: IDialogData,
     public dialogRef: MatDialogRef<PopupComponent>,
-    private sharedService: SharedService,
-    private postApi: PostApiService
+    private postStore: PostStoreService,
   ) {}
 
   ngOnInit() {
@@ -33,31 +33,17 @@ export class PopupComponent implements OnInit {
   }
 
   addPost(): void {
-    const { posts } = this.data;
     const localPost: IPost = this.form.value;
 
-    this.postApi.addPost(localPost).subscribe(
-      (data: IPost) => {
-        const newPosts: IPost[] = [...posts, data];
-        this.sharedService.sendPosts(newPosts);
-      }
-    );
+    this.postStore.addPost(localPost);
 
     this.closeDialog();
   }
 
   updatePost(): void {
-    const { posts } = this.data;
     const localPost: IPost = this.form.value;
 
-    this.postApi.updatePost(localPost).subscribe(
-      (data: IPost) => {
-        const updatePostIdx = posts.findIndex(el => el.id === localPost.id);
-        posts[updatePostIdx] = data;
-
-        this.sharedService.sendPosts(posts);
-      }
-    );
+    this.postStore.updatePost(localPost);
 
     this.closeDialog();
   }
