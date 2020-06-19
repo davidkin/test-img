@@ -22,7 +22,7 @@ export class PostsMainComponent implements OnInit {
     this.posts$ = this.postStore.posts;
   }
 
-  openDialog(): void {
+  addNewPost(): void {
     this.dialog.open(PopupComponent, {
       data: { status: 'add' }
     });

@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
 import { PostStoreService } from '../../services/post-store.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popup',
@@ -11,6 +12,7 @@ import { PostStoreService } from '../../services/post-store.service';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
+  public posts$: Observable<IPost>;
   public form: FormGroup;
   public status: string;
   public statusCheck: boolean;
@@ -60,7 +62,8 @@ export class PopupComponent implements OnInit {
   }
 
   initForm(): void {
-    const { posts, post } = this.data;
+    const { post } = this.data;
+    const posts = this.postStore.getCurrentPosts();
 
     const id = this.statusCheck ? post.id : (posts[posts.length - 1].id + 1);
     const title = this.statusCheck ? post.title : '';

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
-import { SharedService } from 'src/app/shared/services/shared.service';
-import { PostApiService } from 'src/app/shared/services/post-api.service';
 import { MatDialog } from '@angular/material';
 import { PopupComponent } from 'src/app/shared/components/popup/popup.component';
 import { PostStoreService } from 'src/app/shared/services/post-store.service';
@@ -35,7 +33,7 @@ export class PostComponent implements OnInit {
 
   onEditPost(post: IPost): void {
     this.dialog.open(PopupComponent, {
-      data: { status: 'edit' }
+      data: { status: 'edit', post }
     });
   }
 

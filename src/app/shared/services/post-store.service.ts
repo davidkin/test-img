@@ -21,6 +21,10 @@ export class PostStoreService {
     this.loadInitialData();
   }
 
+  getCurrentPosts(): IPost[] {
+    return this._posts.getValue();
+  }
+
   loadInitialData(): void {
     this.postApi.getAllPosts()
       .subscribe(
