@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PostApiService } from './post-api.service';
 import { Post } from '../models/Post';
 import { Observable } from 'rxjs';
+import { ToasterService } from './toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class PostStoreService {
   public readonly posts: Observable<IPost[]> = this._posts.asObservable();
 
   constructor(
-    private postApi: PostApiService
+    private postApi: PostApiService,
+    private toast: ToasterService
   ) {
     this.loadInitialData();
   }
@@ -26,22 +28,29 @@ export class PostStoreService {
           const posts = res.map( (post: IPost) => new Post({ id: post.id, title: post.title, img: post.img }) );
           this._posts.next(posts);
         },
-        err => console.log('Error retrieving Posts:', err)
+        err => this.toast.openSnackBar(`Error retrieving Posts: ${err}`, 'LOAD ERROR')
       );
   }
 
-  deletePost(deletedPost: IPost): Observable<IPost> {
-    const postReq$: Observable<IPost> = this.postApi.deletePost(deletedPost);
+  addPost(newPost: IPost): Observable<IPost> {
+    const postAddReq$ = this.postApi.addPost(newPost);
 
-    postReq$.subscribe(
-      res => {
+    return postAddReq$;
+  }
+
+  deletePost(deletedPost: IPost): Observable<IPost> {
+    const postDeleteReq$: Observable<IPost> = this.postApi.deletePost(deletedPost);
+
+    postDeleteReq$.subscribe(
+      () => {
         const posts: IPost[] = this._posts.getValue();
         const newPosts = posts.filter(el => el.id !== deletedPost.id);
 
         this._posts.next(newPosts);
-      }
+      },
+      err => this.toast.openSnackBar(`Error delete Post: ${err}`, 'DELETE POST ERROR')
     );
 
-    return postReq$;
+    return postDeleteReq$;
   }
 }
