@@ -1,14 +1,14 @@
 <mat-card class="card" [class.reverse]="isReverse">
-    <mat-card-header class="card-header">
-        <mat-card-title class="card-title" [style.color]="color">{{ post.title }}</mat-card-title>
+    <mat-card-header class="card-header" [class.selected]="post === activePost">
+        <mat-card-title class="card-title" [style.color]="colorText">{{ post.title }}</mat-card-title>
 
-        <div class="btn-block" [class.selected]="post === activePost">
+        <div class="btn-block">
             <button class="button" mat-icon-button (click)="onEditPost(post)">
-                <mat-icon color="primary">edit</mat-icon>
+                <mat-icon [style.color]="colorEdit">edit</mat-icon>
             </button>
             
             <button class="button" mat-icon-button (click)="onDeletePost(post)">
-                <mat-icon color="accent">delete</mat-icon>
+                <mat-icon [style.color]="colorDelete">delete</mat-icon>
             </button>
             
         </div>
@@ -17,7 +17,10 @@
 
     <div class="img-block">
         <img class="card-img" mat-card-image [src]="post.img" alt="Photo">
-        <button mat-fab [(colorPicker)]="color" color="accent" class='color-button'><mat-icon>brush</mat-icon></button>
-        <button mat-fab color="warn" class='position-button' (click)="isReverse = !isReverse"><mat-icon>swap_horiz</mat-icon></button>
+        
+        <div class="img-btn-block">
+            <button mat-fab color="accent" class='color-button' (click)="changeColor()"><mat-icon>brush</mat-icon></button>
+            <button mat-fab color="warn" class='position-button' (click)="isReverse = !isReverse"><mat-icon>swap_horiz</mat-icon></button>
+        </div>
     </div>
 </mat-card>

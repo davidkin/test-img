@@ -2,9 +2,9 @@
     max-width: 400px;
     width: 400px;
     padding-bottom: 0;
-    min-height: 280px;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     .card-title {
         margin-bottom: 8px;
@@ -12,24 +12,30 @@
 
     .card-img {
         display: block;
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        border-radius: 4px;
         margin-bottom: 0;
         position: relative;
         top: 5px;
     }
 
     .mat-card-header {
+        visibility: hidden;
         display: flex;
         justify-content: space-between;
         align-items: baseline;
         flex-direction: row;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+        left: 0;
+        background-color: #fff;
+        padding: 10px 0;
+        top: 0;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
     }
     
     .btn-block {
-        display: none;
         position: absolute;
         top: 7px;
         right: 0;
@@ -40,59 +46,56 @@
     }
 
     .selected {
-        display: block;
+        visibility: inherit;
     }
 
     .img-block {
         position: relative;
-        top: 21px;
+        top: -4px;
         
-        .color-button, .position-button {
+        .img-btn-block {
             position: absolute;
             bottom: 10px;
             left: -5px;
-        }
-        
-        .position-button {
-            left: 60px;
-        
-            mat-icon {
-                transform: rotate(90deg);
+
+            button {
+                margin-right: 10px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            .position-button {            
+                mat-icon {
+                    transform: rotate(90deg);
+                }
             }
         }
         
     }
 }
 
-
 .reverse {
     flex-direction: column-reverse;
+
+    .mat-card-header {
+        top: 190px;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .card-img {
+        top: 26px;
+    }
 
     .img-block {
         position: relative;
         top: -26px;
 
-        .color-button, .position-button {
+        .img-btn-block {
             position: absolute;
-            bottom: 172px;
-            left: 349px;
+            bottom: 150px;
         }
-    
-        .position-button {
-            left: 284px;
-        }
-    }
-
-    .card-img {
-        display: block;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        margin-bottom: 0;
-    }
-
-    .btn-block {
-        top: 256px;
     }
 }

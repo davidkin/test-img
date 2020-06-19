@@ -17,6 +17,10 @@ export class PostComponent implements OnInit {
 
   public isReverse: boolean;
 
+  public colorText: string;
+  public colorEdit: string;
+  public colorDelete: string;
+
   constructor(
     private postApi: PostApiService,
     private sharedService: SharedService,
@@ -43,6 +47,16 @@ export class PostComponent implements OnInit {
         status: 'edit'
       }
     });
+  }
+
+  changeColor() {
+    this.colorText = this.getRandomColor();
+    this.colorEdit = this.getRandomColor();
+    this.colorDelete = this.getRandomColor();
+  }
+
+  getRandomColor(): string {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
 }
