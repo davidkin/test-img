@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
 
 @Component({

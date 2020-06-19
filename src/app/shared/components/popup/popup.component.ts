@@ -1,11 +1,10 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { IPost } from '../../interfaces/post.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
 import { SharedService } from '../../services/shared.service';
 import { PostApiService } from '../../services/post-api.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-popup',

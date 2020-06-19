@@ -13,3 +13,15 @@
         }
     }
 }
+
+
+
+@media only screen and (max-width: 890px) {
+    .post-list {
+        flex-direction: column;
+
+        .card-block {
+            margin: 0 10px 10px;
+        }
+    }
+}
