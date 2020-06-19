@@ -1,5 +1,5 @@
 <div class="content">
-    <app-post-list [posts]="posts"></app-post-list>
+    <app-post-list [posts]="posts$ | async"></app-post-list>
 </div>
 
 <button mat-fab color="warn" type="button" class="add-button" (click)="openDialog()">

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-list',

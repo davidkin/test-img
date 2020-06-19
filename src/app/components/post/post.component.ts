@@ -11,7 +11,6 @@ import { PopupComponent } from 'src/app/shared/components/popup/popup.component'
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  @Input() posts: IPost[];
   @Input() post: IPost;
   @Input() activePost: IPost;
 
@@ -31,19 +30,17 @@ export class PostComponent implements OnInit {
   }
 
   onDeletePost(post: IPost): void {
-    this.postApi.deletePost(post).subscribe(
-      () => {
-        const newPosts = this.posts.filter(el => el.id !== post.id);
-        this.sharedService.sendPosts(newPosts);
-      }
-    );
+    // this.postApi.deletePost(post).subscribe(
+    //   () => {
+    //     const newPosts = this.posts.filter(el => el.id !== post.id);
+    //     this.sharedService.sendPosts(newPosts);
+    //   }
+    // );
   }
 
   onEditPost(post: IPost): void {
     this.dialog.open(PopupComponent, {
       data: {
-        post,
-        posts: this.posts,
         status: 'edit'
       }
     });
