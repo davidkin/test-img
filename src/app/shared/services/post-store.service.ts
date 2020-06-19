@@ -19,7 +19,7 @@ export class PostStoreService {
     this.loadInitialData();
   }
 
-  loadInitialData() {
+  loadInitialData(): void {
     this.postApi.getAllPosts()
       .subscribe(
         (res: IPost[]) => {
@@ -28,5 +28,20 @@ export class PostStoreService {
         },
         err => console.log('Error retrieving Posts:', err)
       );
+  }
+
+  deletePost(deletedPost: IPost): Observable<IPost> {
+    const post$: Observable<IPost> = this.postApi.deletePost(deletedPost);
+
+    post$.subscribe(
+      res => {
+        const posts: IPost[] = this._posts.getValue();
+        const newPosts = posts.filter(el => el.id !== deletedPost.id);
+
+        this._posts.next(newPosts);
+      }
+    );
+
+    return post$;
   }
 }

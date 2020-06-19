@@ -4,6 +4,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { PostApiService } from 'src/app/shared/services/post-api.service';
 import { MatDialog } from '@angular/material';
 import { PopupComponent } from 'src/app/shared/components/popup/popup.component';
+import { PostStoreService } from 'src/app/shared/services/post-store.service';
 
 @Component({
   selector: 'app-post',
@@ -22,18 +23,14 @@ export class PostComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    public postStore: PostStoreService
   ) { }
 
   ngOnInit() {
   }
 
   onDeletePost(post: IPost): void {
-    // this.postApi.deletePost(post).subscribe(
-    //   () => {
-    //     const newPosts = this.posts.filter(el => el.id !== post.id);
-    //     this.sharedService.sendPosts(newPosts);
-    //   }
-    // );
+    this.postStore.deletePost(post);
   }
 
   onEditPost(post: IPost): void {
