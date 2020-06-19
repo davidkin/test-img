@@ -21,8 +21,6 @@ export class PostComponent implements OnInit {
   public colorDelete: string;
 
   constructor(
-    private postApi: PostApiService,
-    private sharedService: SharedService,
     public dialog: MatDialog,
   ) { }
 

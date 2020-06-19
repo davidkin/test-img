@@ -10,9 +10,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PostApiService {
-  public API = environment.api;
-
-  public headers = {
+  private API = environment.api;
+  private headers = {
     'Content-Type': 'application/json'
   };
 
@@ -25,24 +24,24 @@ export class PostApiService {
     return this.http.get<IPost[]>(`${this.API}/posts`);
   }
 
-  addPost(post: IPost): Observable<IPost> {
-    return this.http.post<IPost>(`${this.API}/posts/`, post, { headers: this.headers })
+  addPost(newPost: IPost): Observable<IPost> {
+    return this.http.post<IPost>(`${this.API}/posts/`, newPost, { headers: this.headers })
       .pipe(
-        tap(() => this.toastService.openSnackBar(`Post '${post.title}' added`, 'ADD NEW POST'))
+        tap(() => this.toastService.openSnackBar(`Post '${newPost.title}' added`, 'ADD NEW POST'))
       );
   }
 
-  deletePost(post: IPost): Observable<IPost> {
-    return this.http.delete<IPost>(`${this.API}/posts/${post.id}`)
+  deletePost(deletePost: IPost): Observable<IPost> {
+    return this.http.delete<IPost>(`${this.API}/posts/${deletePost.id}`)
       .pipe(
-        tap(() => this.toastService.openSnackBar(`Post '${post.title}' deleted`, 'DELETE POST'))
+        tap(() => this.toastService.openSnackBar(`Post '${deletePost.title}' deleted`, 'DELETE POST'))
       );
   }
 
-  updatePost(post: IPost): Observable<IPost> {
-    return this.http.patch<IPost>(`${this.API}/posts/${post.id}`, post, { headers: this.headers })
+  updatePost(updatedPost: IPost): Observable<IPost> {
+    return this.http.put<IPost>(`${this.API}/posts/${updatedPost.id}`, updatedPost, { headers: this.headers })
       .pipe(
-        tap(() => this.toastService.openSnackBar(`Post '${post.title}' update`, 'UPDATE POST'))
+        tap(() => this.toastService.openSnackBar(`Post '${updatedPost.title}' update`, 'UPDATE POST'))
       );
   }
 
