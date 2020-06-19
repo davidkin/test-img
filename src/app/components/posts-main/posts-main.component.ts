@@ -24,9 +24,7 @@ export class PostsMainComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(PopupComponent, {
-      data: {
-        status: 'add'
-      }
+      data: { status: 'add' }
     });
   }
 }

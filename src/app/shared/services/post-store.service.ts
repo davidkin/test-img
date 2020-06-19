@@ -31,9 +31,9 @@ export class PostStoreService {
   }
 
   deletePost(deletedPost: IPost): Observable<IPost> {
-    const post$: Observable<IPost> = this.postApi.deletePost(deletedPost);
+    const postReq$: Observable<IPost> = this.postApi.deletePost(deletedPost);
 
-    post$.subscribe(
+    postReq$.subscribe(
       res => {
         const posts: IPost[] = this._posts.getValue();
         const newPosts = posts.filter(el => el.id !== deletedPost.id);
@@ -42,6 +42,6 @@ export class PostStoreService {
       }
     );
 
-    return post$;
+    return postReq$;
   }
 }

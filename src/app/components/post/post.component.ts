@@ -35,9 +35,7 @@ export class PostComponent implements OnInit {
 
   onEditPost(post: IPost): void {
     this.dialog.open(PopupComponent, {
-      data: {
-        status: 'edit'
-      }
+      data: { status: 'edit' }
     });
   }
 
