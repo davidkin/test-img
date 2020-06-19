@@ -26,7 +26,7 @@ export class PostStoreService {
           const posts = res.map( (post: IPost) => new Post({ id: post.id, title: post.title, img: post.img }) );
           this._posts.next(posts);
         },
-        err => console.log('Error retrieving Posts')
+        err => console.log('Error retrieving Posts:', err)
       );
   }
 }
