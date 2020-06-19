@@ -3,8 +3,6 @@ import { IPost } from '../../interfaces/post.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { IDialogData } from '../../interfaces/dialog.interface';
-import { SharedService } from '../../services/shared.service';
-import { PostApiService } from '../../services/post-api.service';
 import { PostStoreService } from '../../services/post-store.service';
 
 @Component({
